@@ -29,6 +29,14 @@ def topComment():
     return render_template("TopComments.html", name = "Javi", recetas = response)
 
 
+@views.route("/mostRated")
+def topPuntuaciones():
+    recetas = mongo.A.aggregate([{"$project": {"me_gusta": 1,"receta":1,"autor_info.name":1,"ingredientes":1,"tags":1,"numElements": { "$size": "$me_gusta" }}},{ "$sort": { "numElements": -1 } },{ "$limit": 3 }])
+    response = json_util.dumps(recetas)
+    response = json.loads(response)
+    return render_template("TopPuntuaciones.html", name = "Javi", recetas = response)
+
+
 
 
 @views.route("/filter/<username>")
