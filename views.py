@@ -9,9 +9,25 @@ views = Blueprint(__name__, "views")
 
 @views.route("/")
 def home():
-    recetas = mongo.A.find()
+    recetas = mongo.A.aggregate([{'$project':{
+        'receta' : '$receta',
+        'ingredientes' : '$ingredientes',
+        'tags' : '$tags',
+        'autor_info' : '$autor_info'
+    }}])
     response = json_util.dumps(recetas)
     response = json.loads(response)
+    return render_template("index.html", name = "Javi", recetas = response)
+
+
+@views.route("/search")
+def filter():
+    data = request.args
+    print(data.get("receta"))
+    recetas = mongo.A.find({"receta": {'$regex':data.get("receta")}})
+    response = json_util.dumps(recetas)
+    response = json.loads(response)
+    
     return render_template("index.html", name = "Javi", recetas = response)
 
 @views.route("/<userid>")
