@@ -108,13 +108,35 @@
         </div>
       </div>
 
+      <div class = "row" style = "padding-top: 4%;">
+        <div class="align-self-center ">
+            <h2 style="text-align: center">Número de me gusta</h2>
+        </div>
+      </div>
+      <div class = "row" style="padding-top: 2%;">
+        <div class=" col align-self-center">
+            <p style="text-align: center; font-size: large;">{{mg.likes}}</p>
+        </div>
+      </div>
+      {% if re.post %}
+      <div class = "row" style = "padding-top: 2%;">
+        <div class="align-self-center ">
+            <h2 style="text-align: center">Comentarios</h2>
+        </div>
+      </div>
+      {% for comentario in re.post %}
+      <div class = "row" style="padding-top: 2%;">
+        <div class=" col align-self-center">
+            <p style="text-align: center; font-size: large;"> Autor: {{comentario.autor_info.name}}</p>
+            <p style="text-align: center; font-size: large;"> Comentario : {{comentario.cuerpo}}</p>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
      
         
-      </div>
-
-
-      <p>{{receta}}</p>
-      
+    </div>
+    
        
       </div>
       {% endfor %}

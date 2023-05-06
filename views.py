@@ -26,13 +26,25 @@ def detalles(userid):
     tags=""
     for  tag in Aux.get("tags"):
         if tag == Aux.get("tags")[-1]:     
-            tags=tags + tag +""
+            tags=tags + tag + ""
         else:
             tags=tags + tag +", "
 
+    n_meGusta = mongo.A.aggregate([{
+        '$match' : {
+            '_id':ObjectId(user)
+        }
 
+    },{'$project' : {
+        '_id':0,
+        'likes' : {
+            '$size' : '$me_gusta'
+        }
+    }}])
 
-    return render_template("details.html", receta = response, tags = tags)
+    n_meGusta = json_util.dumps(n_meGusta)
+    n_meGustaDef = json.loads(n_meGusta)[0]
+    return render_template("details.html", receta = response, tags = tags, mg = n_meGustaDef)
 
 @views.route("/filter/<username>")
 def home2(username):
