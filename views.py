@@ -23,7 +23,11 @@ def sort():
 
 @views.route("/mostComment")
 def topComment():
-    recetas = mongo.A.aggregate([{"$sort": {"post":-1}},{"$limit": 3}])
+    recetas = mongo.A.aggregate([{
+        "$match": {"post": {"$exists": True}} # solo considerar documentos que contengan el campo "post"
+    },{"$project": {"_id": 1,"me_gusta": 1,"receta":1,"autor_info.name":1,"ingredientes":1,"tags":1, "num_posts": {"$size": "$post"}}},
+    {"$sort": {"num_posts": -1}},
+    {"$limit": 3}])
     response = json_util.dumps(recetas)
     response = json.loads(response)
     return render_template("TopComments.html", name = "Javi", recetas = response)
