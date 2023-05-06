@@ -14,6 +14,19 @@ def home():
     response = json.loads(response)
     return render_template("index.html", name = "Javi", recetas = response)
 
+
+@views.route("/tags")
+def recetasXEtiquetas():
+    recetas = mongo.A.aggregate([
+    {"$unwind": "$tags"},
+    {"$group": {"_id": "$tags", "count": {"$sum": 1}}},
+    {"$sort": {"count": -1}}
+])
+    response = json_util.dumps(recetas)
+    response = json.loads(response)
+    print(response)
+    return render_template("topTags.html", name = "Javi", recetas = response)
+
 @views.route("/sort")
 def sort():
     recetas = mongo.A.aggregate([{"$sort": {"receta":1}}])
