@@ -59,27 +59,65 @@
     </nav>
 
     <div class="container">
+        {% for re in receta %}
       <div class="row" style="padding-top: 6%">
         <div class="col align-self-center">
-          <h1 style="text-align: center">Recetas</h1>
+          <h1 style="text-align: center">{{re.receta}}</h1>
+        </div>
+      </div>
+      <div class = "row" style = "padding-top: 6%;">
+        <div class="align-self-center ">
+            <h2 style="text-align: center">Ingredientes</h2>
+        </div>
+      </div>
+      <div class = "row" style="padding-top: 2%;">
+        <div class=" col align-self-center">
+            <p style="text-align: center; font-size: large;">{{re.ingredientes}}</p>
+        </div>
+      </div>
+      <div class = "row" style = "padding-top: 4%;">
+        <div class="align-self-center ">
+            <h2 style="text-align: center">Modo de hacerlo</h2>
+        </div>
+      </div>
+      <div class = "row" style="padding-top: 2%;">
+        <div class=" col align-self-center">
+            <p style="text-align: center; font-size: large;">{{re.modo_hacerlo}}</p>
         </div>
       </div>
 
-      <div class="row" style = "padding-top: 6%;">
-        {% for receta in recetas %}
-        <div class="col-md-3">
-          <div href = "/views/"class="card text-bg-light mb-5 " style="max-width: 18rem">
-            <div class="card-body">
-              <h5 class="card-title">{{receta.receta}}</h5>
-              <p class="card-text">Autor: {{receta.autor_info.name}}</p>
-              <p class="card-text">Ingredientes: {{receta.ingredientes}}</p>
-              <p class="card-text tags">Tags: {{receta.tags}}</p>
-              <a class = "btn btn-primary stretched-link" style="width: 50%; margin-left: 25%;" href="/views/{{receta._id}}"  >Detalles</a>
-            </div>
-          </div>
+      <div class = "row" style = "padding-top: 4%;">
+        <div class="align-self-center ">
+            <h2 style="text-align: center">Autor</h2>
         </div>
-        {% endfor %}
       </div>
+      <div class = "row" style="padding-top: 2%;">
+        <div class=" col align-self-center">
+            <p style="text-align: center; font-size: large;">{{re.autor_info.name}}</p>
+        </div>
+      </div>
+
+      <div class = "row" style = "padding-top: 4%;">
+        <div class="align-self-center ">
+            <h2 style="text-align: center">Tags</h2>
+        </div>
+      </div>
+      <div class = "row" style="padding-top: 2%;">
+        <div class=" col align-self-center">
+            <p style="text-align: center; font-size: large;">{{tags}}</p>
+        </div>
+      </div>
+
+     
+        
+      </div>
+
+
+      <p>{{receta}}</p>
+      
+       
+      </div>
+      {% endfor %}
     </div>
   </body>
 </html>
