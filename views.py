@@ -14,6 +14,15 @@ def home():
     response = json.loads(response)
     return render_template("index.html", name = "Javi", recetas = response)
 
+@views.route("/sort")
+def sort():
+    recetas = mongo.A.aggregate([{"$sort": {"receta":1}}])
+    response = json_util.dumps(recetas)
+    response = json.loads(response)
+    return render_template("sort.html", name = "Javi", recetas = response)
+
+
+
 
 @views.route("/filter/<username>")
 def home2(username):
