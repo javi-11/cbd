@@ -74,8 +74,8 @@
     <div class="container">
       <div class="row" style="padding-top: 6%">
         <div class="col align-self-center">
-          <h1 style="text-align: center">Top 3 recetas con mejor puntuación positiva</h1>
-
+          <h1 style="text-align: center">Tags</h1>
+          <h4 style="text-align: center; color: grey;">Se muestran todos los tags posibles. Ordenados de más a menos frecuentes.</h4>
         </div>
       </div>
       <div class="row" style = "padding-top: 6%;">
@@ -83,11 +83,8 @@
         <div class="col-md-3">
           <div href = "/views/"class="card text-bg-light mb-5 " style="max-width: 18rem">
             <div class="card-body">
-              <h5 class="card-title">{{receta.receta}}</h5>
-              <p class="card-text">Autor: {{receta.autor_info.name}}</p>
-              <p class="card-text">Ingredientes: {{receta.ingredientes}}</p>
-              <p class="card-text tags">Tags: {{receta.tags}}</p>
-              <a class = "btn btn-primary stretched-link" style="width: 50%; margin-left: 25%;" href="/views/{{receta._id}}"  >Detalles</a>
+              <h5 class="card-title">{{receta._id}}</h5>
+              <p class="card-text">Frecuency: {{receta.count}}</p> 
             </div>
           </div>
         </div>
