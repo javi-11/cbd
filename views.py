@@ -7,6 +7,8 @@ mongo = client.ProyectoCBD
 
 views = Blueprint(__name__, "views")
 
+
+
 @views.route("/")
 def home():
     recetas = mongo.A.aggregate([{'$project':{
