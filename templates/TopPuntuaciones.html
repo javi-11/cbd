@@ -15,7 +15,7 @@
   <body>
     <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">Recetas</a>
+        <a class="navbar-brand" href="/views/">Recetas</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -33,33 +33,32 @@
           id="navbarSupportedContent"
         >
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        
+            <li class="nav-item"  >
+              <a class="nav-link active" aria-current="page" href="/views/top_publishers">Tops</a>
+            </li>
+            <li class="nav-item"  >
+              <a class="nav-link active" href="sort">Ordenar</a>
             </li>
             <li class="nav-item" >
-              <a class="nav-link" href="#">Link</a>
+              <a  class="nav-link active"  href="tags">Tags</a>
             </li>
-            <li class="nav-item"  style="margin-right: 10%">
-              <a class="nav-item" href="sort">Mostrar recetes ordenadas</a>
-            </li>
-            <li class="nav-item"  style="margin-right: 10%">
-              <a  class="nav-item"  href="tags">Tags</a>
-            </li>
-            <li class="nav-item"  style="margin-right: 10%">
-              <a  class="nav-item"  href="mostComment">Mostrar recetes más comentarios</a>
+            <li class="nav-item" style = "width:100%; "  >
+              <a  class="nav-link active"  href="mostComment"> Comentarios</a>
             </li> 
-            <li class="nav-item" style="margin-right: 30%">
-              <a  class="nav-item"  href="mostRated">Mostrar recetes más puntuaciones</a>
+            <li class="nav-item" style = "margin-right: 24%;">
+              <a  class="nav-link active"  href="mostRated">Valoradas</a>
             </li>
            
-            <div style="width: 100%">
-              <form class="d-flex me-2" style="width: 100%" role="search">
+            <div >
+              <form class="d-flex me-2" style="width: 100%" role="search" action = "/views/search">
                 <input
                   class="form-control me-2"
                   style="width: 200px"
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
+                  name = "receta"
                 />
                 <button class="btn btn-outline-success" type="submit">
                   Search
@@ -70,7 +69,6 @@
         </div>
       </div>
     </nav>
-
     <div class="container">
       <div class="row" style="padding-top: 6%">
         <div class="col align-self-center">
