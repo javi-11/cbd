@@ -99,17 +99,17 @@ def detalles(userid):
     n_meGustaDef = json.loads(n_meGusta)[0]
     return render_template("details.html", receta = response, tags = tags, mg = n_meGustaDef)
 
-@views.route("/filter/<username>")
-def home2(username):
 
-    return render_template("index.html", name = username)
+@views.route("/top_publishers")
+def top():
+   
 
-@views.route("/data")
-def getData():
-    data = request.json
-    return jsonify(data)
+    Aux = mongo.A.aggregate([{
+        "$sortByCount":"$autor_info.name"},{
+        "$limit" : 10
+        }])
 
-@views.route("/go_to_home")
-def go_to_home():
-
-    return redirect(url_for("views.home"))
+    tops = json_util.dumps(Aux)
+    tops = json.loads(tops)
+    print(tops)
+    return render_template("top.html", top = tops)

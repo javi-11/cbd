@@ -36,11 +36,9 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
-            
             <li class="nav-item" style="margin-right: 100%" >
-              <a class="nav-link active" aria-current="page" href="/views/top_publishers">Tops</a>
-            </li>
-           
+                <a class="nav-link active" aria-current="page" href="/views/top_publishers">Tops</a>
+              </li>
             <div style="width: 100%">
               <form class="d-flex me-2" style="width: 100%" role="search" action = "/views/search">
                 <input
@@ -64,24 +62,28 @@
     <div class="container">
       <div class="row" style="padding-top: 6%">
         <div class="col align-self-center">
-          <h1 style="text-align: center">Recetas</h1>
+          <h1 style="text-align: center">Ranking de autores</h1>
         </div>
       </div>
 
       <div class="row" style = "padding-top: 6%;">
-        {% for receta in recetas %}
-        <div class="col-md-3">
-          <div href = "/views/"class="card text-bg-light mb-5 " style="max-width: 18rem">
-            <div class="card-body">
-              <h5 class="card-title">{{receta.receta}}</h5>
-              <p class="card-text">Autor: {{receta.autor_info.name}}</p>
-              <p class="card-text">Ingredientes: {{receta.ingredientes}}</p>
-              <p class="card-text tags">Tags: {{receta.tags}}</p>
-              <a class = "btn btn-primary stretched-link" style="width: 50%; margin-left: 25%;" href="/views/{{receta._id}}"  >Detalles</a>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
+        <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Number of recipes</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for tp in top %}
+                <tr>
+                    <td>{{tp._id}}</td>
+                    <td>{{tp.count}}</td>
+                </tr>
+                {% endfor %}
+        
+    
+        
       </div>
     </div>
   </body>
