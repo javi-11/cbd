@@ -23,12 +23,49 @@ def home():
 @views.route("/search")
 def filter():
     data = request.args
-    print(data.get("receta"))
-    recetas = mongo.A.find({"receta": {'$regex':data.get("receta")}})
-    response = json_util.dumps(recetas)
-    response = json.loads(response)
+    if(data.get("receta") != ""):
+        recetas = mongo.A.aggregate([{
+            '$match': {
+                'receta' : {'$regex':data.get("receta")}
+            }
+        },
+                                     {'$project':{
+        'receta' : '$receta',
+        'ingredientes' : '$ingredientes',
+        'tags' : '$tags',
+        'autor_info' : '$autor_info'
+        }}])
+        recetas2 = mongo.A.aggregate([{
+            '$match': {
+                'autor_info.name' : {'$regex':data.get("receta")}
+            }
+        },
+                                     {'$project':{
+        'receta' : '$receta',
+        'ingredientes' : '$ingredientes',
+        'tags' : '$tags',
+        'autor_info' : '$autor_info'
+        }}])
+        response2 = json_util.dumps(recetas2)
+        response = json_util.dumps(recetas)
+        response = json.loads(response)
+        response2 = json.loads(response2)
+        rsp = response2 + response
+        return render_template("index.html", name = "Javi", recetas = rsp)
+
+    else:
+
+        recetas = mongo.A.aggregate([{'$project':{
+        'receta' : '$receta',
+        'ingredientes' : '$ingredientes',
+        'tags' : '$tags',
+        'autor_info' : '$autor_info'
+        }}])
+        response = json_util.dumps(recetas)
+        response = json.loads(response)
+        return render_template("index.html", name = "Javi", recetas = response)
     
-    return render_template("index.html", name = "Javi", recetas = response)
+    
 
 @views.route("/<userid>")
 def detalles(userid):
