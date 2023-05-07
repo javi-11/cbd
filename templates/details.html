@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/views/">Recetas</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse"
+          style="width: 100%"
+          id="navbarSupportedContent"
+        >
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item" style="margin-right: 100%" >
+              <a class="nav-link active" aria-current="page" href="/views/top_publishers">Tops</a>
+            </li>
+            <div style="width: 100%">
+              <form class="d-flex me-2" style="width: 100%" role="search">
+                <input
+                  class="form-control me-2"
+                  style="width: 200px"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button class="btn btn-outline-success" type="submit">
+                  Search
+                </button>
+              </form>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+        {% for re in receta %}
+      <div class="row" style="padding-top: 6%">
+        <div class="col align-self-center">
+          <h1 style="text-align: center">{{re.receta}}</h1>
+        </div>
+      </div>
+      <div class = "row" style = "padding-top: 6%;">
+        <div class="align-self-center ">
+            <h2 style="text-align: center">Ingredientes</h2>
+        </div>
+      </div>
+      <div class = "row" style="padding-top: 2%;">
+        <div class=" col align-self-center">
+            <p style="text-align: center; font-size: large;">{{re.ingredientes}}</p>
+        </div>
+      </div>
+      <div class = "row" style = "padding-top: 4%;">
+        <div class="align-self-center ">
+            <h2 style="text-align: center">Modo de hacerlo</h2>
+        </div>
+      </div>
+      <div class = "row" style="padding-top: 2%;">
+        <div class=" col align-self-center">
+            <p style="text-align: center; font-size: large;">{{re.modo_hacerlo}}</p>
+        </div>
+      </div>
+
+      <div class = "row" style = "padding-top: 4%;">
+        <div class="align-self-center ">
+            <h2 style="text-align: center">Autor</h2>
+        </div>
+      </div>
+      <div class = "row" style="padding-top: 2%;">
+        <div class=" col align-self-center">
+            <p style="text-align: center; font-size: large;">{{re.autor_info.name}}</p>
+        </div>
+      </div>
+
+      <div class = "row" style = "padding-top: 4%;">
+        <div class="align-self-center ">
+            <h2 style="text-align: center">Tags</h2>
+        </div>
+      </div>
+      <div class = "row" style="padding-top: 2%;">
+        <div class=" col align-self-center">
+            <p style="text-align: center; font-size: large;">{{tags}}</p>
+        </div>
+      </div>
+
+      <div class = "row" style = "padding-top: 4%;">
+        <div class="align-self-center ">
+            <h2 style="text-align: center">Número de me gusta</h2>
+        </div>
+      </div>
+      <div class = "row" style="padding-top: 2%;">
+        <div class=" col align-self-center">
+            <p style="text-align: center; font-size: large;">{{mg.likes}}</p>
+        </div>
+      </div>
+      {% if re.post %}
+      <div class = "row" style = "padding-top: 2%;">
+        <div class="align-self-center ">
+            <h2 style="text-align: center">Comentarios</h2>
+        </div>
+      </div>
+      {% for comentario in re.post %}
+      <div class = "row" style="padding-top: 2%;">
+        <div class=" col align-self-center">
+            <p style="text-align: center; font-size: large;"> Autor: {{comentario.autor_info.name}}</p>
+            <p style="text-align: center; font-size: large;"> Comentario : {{comentario.cuerpo}}</p>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+     
+        
+    </div>
+    
+       
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
